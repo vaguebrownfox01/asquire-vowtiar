@@ -424,6 +424,10 @@ const recordVadAction = (dispatch) => {
 		dispatch({ type: "SET_LOADING", payload: true });
 
 		let vad = {
+			count: 0,
+			avg: 0,
+			score: 0,
+			spectrum: 0,
 			calc: true,
 		};
 

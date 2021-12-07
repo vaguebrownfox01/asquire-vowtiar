@@ -43,7 +43,7 @@ export const detectStims = async (audioUrl, frequency = 555) => {
 	let filterNode = ctx.createBiquadFilter();
 	filterNode.type = "bandpass";
 	filterNode.frequency.value = frequency;
-	filterNode.Q.value = 55;
+	filterNode.Q.value = 77;
 
 	source.connect(filterNode);
 	filterNode.connect(ctx.destination);
