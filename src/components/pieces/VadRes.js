@@ -121,13 +121,13 @@ const EvalRes = ({ vadRes }) => {
 			<Typography variant="h4" align="center" gutterBottom>
 				<b
 					className={
-						vadRes.score > 7 ? classes.scoreOk : classes.scoreBad
+						vadRes.score > 5 ? classes.scoreOk : classes.scoreBad
 					}
 				>{`${vadRes.score}`}</b>
 				<b>/10</b>
 			</Typography>
 
-			{vadRes.score < 7 && (
+			{vadRes.score < 5 && (
 				<Typography
 					variant="caption"
 					style={{ color: red[700] }}
