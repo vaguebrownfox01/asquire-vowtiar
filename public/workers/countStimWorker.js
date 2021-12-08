@@ -4,7 +4,7 @@ this.addEventListener("message", (e) => {
 
 	// Constants
 	const ENGWP = 0.7; // Energy window
-	const THRP = 0.5; // Threshold point
+	const THRP = 0.2; // Threshold point
 	const PADD = 1.3; // Padding duration
 
 	const MIN_SEC = 5; // minimum seconds to sustain a phonation
