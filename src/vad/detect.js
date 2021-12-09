@@ -28,16 +28,7 @@ export const detectStims = async (audioUrl, frequency = 555) => {
 	source.buffer = audioBuffer;
 
 	// FFT
-	const fftBufflen = 1 << (32 - Math.clz32(len));
-	const signal = new Float32Array(fftBufflen);
-	signal.set(audioArr, 0);
-
-	console.log("detect len", { len, fftBufflen });
-	let fft = new FFT(fftBufflen, fs);
-	fft.forward(signal);
-	let spectrum = fft.spectrum;
-
-	console.log("detect | spectrum", spectrum);
+	const spectrum = getSpectrum(audioArr, fs);
 
 	// Filter
 	let filterNode = ctx.createBiquadFilter();
@@ -94,3 +85,19 @@ export const alertMsg = `Sorry, your browser doesn't support a crucial feature
 needed to allow you to record using your device's microphone. 
 You should use Chrome or Firefox if you want the best audio support, 
 and ensure you're using the *latest version* your browser of choice.`;
+
+const getSpectrum = (audioArr, fs) => {
+	// FFT
+	const fftBufflen = 1 << (32 - Math.clz32(audioArr.length));
+	const signal = new Float32Array(fftBufflen);
+	signal.set(audioArr, 0);
+
+	console.log("detect len", { len: audioArr.length, fftBufflen });
+	let fft = new FFT(fftBufflen, fs);
+	fft.forward(signal);
+	let spectrum = fft.spectrum;
+
+	console.log("detect | spectrum", spectrum);
+
+	return spectrum;
+};
