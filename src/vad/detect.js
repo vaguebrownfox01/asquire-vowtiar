@@ -28,13 +28,13 @@ export const detectStims = async (audioUrl, frequency = 555) => {
 	source.buffer = audioBuffer;
 
 	// FFT
-	const spectrum = getSpectrum(audioArr, fs);
+	// const spectrum = getSpectrum(audioArr, fs);
 
 	// Filter
 	let filterNode = ctx.createBiquadFilter();
 	filterNode.type = "bandpass";
 	filterNode.frequency.value = frequency;
-	filterNode.Q.value = 77;
+	filterNode.Q.value = 55;
 
 	source.connect(filterNode);
 	filterNode.connect(ctx.destination);
@@ -45,7 +45,7 @@ export const detectStims = async (audioUrl, frequency = 555) => {
 	// count stims
 	const res = await countStims(audioArr, outputAudioBuffer.sampleRate);
 	console.log("filter res count", res);
-	res.spectrum = spectrum;
+	// res.spectrum = spectrum;
 	// let wavop = toWav(outputAudioBuffer);
 
 	return res;
