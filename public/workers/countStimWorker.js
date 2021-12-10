@@ -8,7 +8,7 @@ this.addEventListener("message", (e) => {
 	const PADD = 1.3; // Padding duration
 
 	const MIN_SEC = 7; // minimum seconds to sustain a phonation
-	const MIN_CNT = 4; // minimum times to repeat a phonation
+	const MIN_CNT = 3; // minimum times to repeat a phonation
 	const SCRDP = 0.6; // weight of duration on score
 	const SCRCN = 1 - SCRDP; // weight of count on score
 
