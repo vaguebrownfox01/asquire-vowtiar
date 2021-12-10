@@ -9,7 +9,7 @@ this.addEventListener("message", (e) => {
 
 	const MIN_SEC = 7; // minimum seconds to sustain a phonation
 	const MIN_CNT = 4; // minimum times to repeat a phonation
-	const SCRDP = 0.5; // weight of duration on score
+	const SCRDP = 0.6; // weight of duration on score
 	const SCRCN = 1 - SCRDP; // weight of count on score
 
 	// Pad zeros to the signal
@@ -38,7 +38,7 @@ this.addEventListener("message", (e) => {
 	// Calculate threshold: range
 	let countArr = [];
 	let tint = [];
-	for (let t = 0.01; t < THRP; t += 0.01) {
+	for (let t = 0.02; t < THRP; t += 0.02) {
 		let thr = t * maxEngy;
 		let sign = energyArr.map((e) => (e - thr > 0 ? 1 : -1)); // signed array
 		let temp1 = sign.slice(1); // shifted array
