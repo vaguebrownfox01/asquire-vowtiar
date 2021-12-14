@@ -7,6 +7,7 @@ this.addEventListener("message", (e) => {
 	const THRP = 0.2; // Threshold point
 	const PADD = 1.3; // Padding duration
 
+	const MAX_SCR = 10;
 	const MIN_SEC = 7; // minimum seconds to sustain a phonation
 	const MIN_CNT = 4; // minimum times to repeat a phonation
 	const SCRDP = 0.5; // weight of duration on score
@@ -79,8 +80,12 @@ this.addEventListener("message", (e) => {
 
 	let score = ((scoreDur * SCRDP + scoreCnt * SCRCN) * 10).toFixed(1);
 
+	let c = count > MIN_CNT ? MIN_CNT : count;
+	let t = avg > MIN_SEC ? MIN_SEC : avg;
+	let mxScore = c * (MAX_SCR / MIN_CNT) * t;
+
 	// Return results
-	postMessage({ count, avg, score });
+	postMessage({ count, avg, score: mxScore });
 
 	this.close();
 });

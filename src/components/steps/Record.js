@@ -26,7 +26,7 @@ import Worm from "../pieces/Worm";
 import useContainerDimensions from "../../hooks/useContainerDimensions";
 import VadRes from "../pieces/VadRes";
 
-import { select } from "d3";
+// import { select } from "d3";
 
 const MAX_REC_DURATION = 121000;
 

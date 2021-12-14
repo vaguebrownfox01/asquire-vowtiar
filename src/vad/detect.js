@@ -4,7 +4,7 @@ const {
 } = require("standardized-audio-context");
 // var toWav = require("audiobuffer-to-wav");
 
-const { FFT } = require("./dsp/dsp");
+// const { FFT } = require("./dsp/dsp");
 
 export const detectStims = async (audioUrl, frequency = 555) => {
 	const audioBuffer = await createAudioBuffer(audioUrl);
@@ -28,7 +28,7 @@ export const detectStims = async (audioUrl, frequency = 555) => {
 	source.buffer = audioBuffer;
 
 	// FFT
-	const spectrum = getSpectrum(audioArr, fs);
+	// const spectrum = getSpectrum(audioArr, fs);
 
 	// Filter
 	let filterNode = ctx.createBiquadFilter();
@@ -45,7 +45,7 @@ export const detectStims = async (audioUrl, frequency = 555) => {
 	// count stims
 	const res = await countStims(audioArr, outputAudioBuffer.sampleRate);
 	console.log("filter res count", res);
-	res.spectrum = spectrum;
+	// res.spectrum = spectrum;
 	// let wavop = toWav(outputAudioBuffer);
 
 	return res;
@@ -86,18 +86,18 @@ needed to allow you to record using your device's microphone.
 You should use Chrome or Firefox if you want the best audio support, 
 and ensure you're using the *latest version* your browser of choice.`;
 
-const getSpectrum = (audioArr, fs) => {
-	// FFT
-	const fftBufflen = 1 << (32 - Math.clz32(audioArr.length));
-	const signal = new Float32Array(fftBufflen);
-	signal.set(audioArr, 0);
+// const getSpectrum = (audioArr, fs) => {
+// 	// FFT
+// 	const fftBufflen = 1 << (32 - Math.clz32(audioArr.length));
+// 	const signal = new Float32Array(fftBufflen);
+// 	signal.set(audioArr, 0);
 
-	console.log("detect len", { len: audioArr.length, fftBufflen });
-	let fft = new FFT(fftBufflen, fs);
-	fft.forward(signal);
-	let spectrum = fft.spectrum;
+// 	console.log("detect len", { len: audioArr.length, fftBufflen });
+// 	let fft = new FFT(fftBufflen, fs);
+// 	fft.forward(signal);
+// 	let spectrum = fft.spectrum;
 
-	console.log("detect | spectrum", spectrum);
+// 	console.log("detect | spectrum", spectrum);
 
-	return spectrum;
-};
+// 	return spectrum;
+// };
