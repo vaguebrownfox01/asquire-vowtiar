@@ -3,7 +3,7 @@ this.addEventListener("message", (e) => {
 	const fs = e.data.fs; // sampling frequency
 
 	// Constants
-	const ENGWP = 0.7; // Energy window
+	const ENGWP = 0.72; // Energy window
 	const THRP = 0.22; // Threshold point
 	const PADD = 1.3; // Padding duration
 
