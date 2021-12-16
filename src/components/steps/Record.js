@@ -1,32 +1,26 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { Chip, Collapse, Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import InstructionModal from "../pieces/Instructions";
 import { green } from "@material-ui/core/colors";
-
-import { firebaseSetActive } from "../../functions/firestore";
-
+import { makeStyles } from "@material-ui/core/styles";
+import ListIcon from "@material-ui/icons/List";
+import React from "react";
+import { Context as RecordContext } from "../../context/data/RecordContext";
 // Context
 import { Context as StepContext } from "../../context/data/StepContext";
 import { Context as UserContext } from "../../context/data/UserContext";
-import { Context as RecordContext } from "../../context/data/RecordContext";
-import ListIcon from "@material-ui/icons/List";
-import { Chip, Collapse, Typography } from "@material-ui/core";
-
+import { firebaseSetActive } from "../../functions/firestore";
+// Hooks
+import useContainerDimensions from "../../hooks/useContainerDimensions";
+import InstructionModal from "../pieces/Instructions";
+import RecControl from "../pieces/RecControls";
 // Pieces
 import RecTitle from "../pieces/RecTitle";
 import StimContent from "../pieces/StimContent";
 import Timer from "../pieces/Timer";
-import RecControl from "../pieces/RecControls";
-import Worm from "../pieces/Worm";
-
-// Hooks
-import useContainerDimensions from "../../hooks/useContainerDimensions";
 import VadRes from "../pieces/VadRes";
-
-// import { select } from "d3";
+import Worm from "../pieces/Worm";
 
 const MAX_REC_DURATION = 121000;
 
@@ -161,6 +155,7 @@ export default function Record() {
 		recordUploadAction({
 			...userState.selectedUser,
 			stimTag: finishedStim.tag,
+			score: recordState.vadRes.score,
 		}).then(() => {
 			const user = {
 				...userState.selectedUser,

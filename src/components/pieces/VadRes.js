@@ -9,44 +9,9 @@ import {
 	Modal,
 	Typography,
 } from "@material-ui/core";
-import { lightGreen, red } from "@material-ui/core/colors";
+import { lightGreen, orange, red } from "@material-ui/core/colors";
 
-const useStyles = makeStyles((theme) => ({
-	modal: {
-		display: "flex",
-		alignItems: "center",
-		justifyContent: "center",
-	},
-	modalContent: {
-		display: "flex",
-		flexDirection: "column",
-		alignItems: "center",
-		justifyContent: "space-between",
-		backgroundColor: "rgb(255, 255, 255, 0.9)",
-		border: "2px solid",
-		borderColor: theme.palette.secondary.main,
-		borderRadius: 8,
-		boxShadow: theme.shadows[5],
-		minHeight: "20vh",
-		minWidth: "20ch",
-		padding: theme.spacing(2, 2, 3),
-		margin: theme.spacing(1),
-	},
-	button: {
-		textTransform: "none",
-		marginTop: theme.spacing(4),
-		alignSelf: "flex-end",
-	},
-	divider: {
-		marginBottom: theme.spacing(2),
-	},
-	scoreOk: {
-		color: lightGreen[700],
-	},
-	scoreBad: {
-		color: red[700],
-	},
-}));
+const MIN_SCORE = 7;
 
 const VadRes = ({ modalOpen, handleClose, vadRes }) => {
 	const classes = useStyles();
@@ -85,7 +50,7 @@ const VadRes = ({ modalOpen, handleClose, vadRes }) => {
 						onClick={handleClose}
 						className={classes.button}
 					>
-						Continue...
+						Close
 					</Button>
 				</div>
 			</Fade>
@@ -121,13 +86,15 @@ const EvalRes = ({ vadRes }) => {
 			<Typography variant="h4" align="center" gutterBottom>
 				<b
 					className={
-						vadRes.score > 5 ? classes.scoreOk : classes.scoreBad
+						vadRes.score > MIN_SCORE
+							? classes.scoreOk
+							: classes.scoreBad
 					}
 				>{`${vadRes.score}`}</b>
 				<b>/10</b>
 			</Typography>
 
-			{vadRes.score < 5 && (
+			{vadRes.score < MIN_SCORE && (
 				<Typography
 					variant="caption"
 					style={{ color: red[700] }}
@@ -144,3 +111,40 @@ const EvalRes = ({ vadRes }) => {
 };
 
 export default VadRes;
+
+const useStyles = makeStyles((theme) => ({
+	modal: {
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
+	},
+	modalContent: {
+		display: "flex",
+		flexDirection: "column",
+		alignItems: "center",
+		justifyContent: "space-between",
+		backgroundColor: "rgb(255, 255, 255, 0.9)",
+		border: "2px solid",
+		borderColor: theme.palette.secondary.main,
+		borderRadius: 8,
+		boxShadow: theme.shadows[5],
+		minHeight: "20vh",
+		minWidth: "20ch",
+		padding: theme.spacing(2, 2, 3),
+		margin: theme.spacing(1),
+	},
+	button: {
+		textTransform: "none",
+		marginTop: theme.spacing(4),
+		alignSelf: "flex-end",
+	},
+	divider: {
+		marginBottom: theme.spacing(2),
+	},
+	scoreOk: {
+		color: lightGreen[700],
+	},
+	scoreBad: {
+		color: orange[900],
+	},
+}));
