@@ -9,7 +9,7 @@ this.addEventListener("message", (e) => {
 
 	const MAX_SCR = 10;
 	const MIN_SEC = 7; // minimum seconds to sustain a phonation
-	const MIN_CNT = 4; // minimum times to repeat a phonation
+	const MIN_CNT = 3; // minimum times to repeat a phonation
 	const SCRDP = 0.5; // weight of duration on score
 	const SCRCN = 1 - SCRDP; // weight of count on score
 
@@ -82,7 +82,10 @@ this.addEventListener("message", (e) => {
 
 	let c = count > MIN_CNT ? MIN_CNT : count;
 	let t = avg > MIN_SEC ? MIN_SEC : avg;
-	let mxScore = c * (MAX_SCR / MIN_CNT) * t;
+	let mxScore = (
+		((c * (MAX_SCR / MIN_CNT)) / (MIN_SEC * MIN_SEC)) *
+		(t * t)
+	).toFixed(1);
 
 	// Return results
 	postMessage({ count, avg, score: mxScore });
