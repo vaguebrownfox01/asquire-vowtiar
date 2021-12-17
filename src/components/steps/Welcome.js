@@ -14,86 +14,6 @@ import { VERSION } from "../../functions/firebaseSetup";
 // Context
 import { Context as StepContext } from "../../context/data/StepContext";
 
-const useStyles = makeStyles((theme) => ({
-	root: {
-		position: "relative",
-		background: theme.palette.primary.card,
-	},
-	content: {
-		position: "relative",
-	},
-	bgimgDiv: {
-		position: "absolute",
-		display: "flex",
-		justifyContent: "center",
-		alignItems: "center",
-		height: "100%",
-		width: "100%",
-		opacity: 0.1,
-	},
-	bullet: {
-		display: "inline-block",
-		margin: "0 2px",
-		transform: "scale(0.8)",
-	},
-	title: {
-		fontSize: 16,
-	},
-	subtitleDiv: {
-		marginRight: "auto",
-		marginLeft: "auto",
-		maxWidth: 600,
-	},
-	subtitle: {
-		fontWeight: "bold",
-	},
-	consentbutton: {
-		textTransform: "none",
-		marginTop: theme.spacing(1),
-	},
-	terms: {
-		paddingTop: theme.spacing(2),
-	},
-	cardactions: {
-		flexDirection: "row-reverse",
-		paddingRight: theme.spacing(3),
-	},
-	button: {
-		marginTop: theme.spacing(1),
-		marginRight: theme.spacing(1),
-	},
-	actionsContainer: {
-		marginTop: theme.spacing(2),
-	},
-	avatar: {
-		width: theme.spacing(4),
-		height: theme.spacing(4),
-		background: theme.palette.background.default,
-	},
-	avatarDiv: {
-		color: "inherit" /* blue colors for links too */,
-		textDecoration: "none" /* no underline */,
-		borderRadius: "50%",
-	},
-	avagroup: {
-		marginRight: theme.spacing(2),
-		marginLeft: theme.spacing(2),
-	},
-	feedback: {
-		marginRight: "auto",
-		marginLeft: theme.spacing(4),
-		marginBottom: theme.spacing(1),
-		textTransform: "none",
-	},
-	version: {
-		position: "absolute",
-		color: "grey",
-		bottom: 0,
-		right: 10,
-		fontSize: 10,
-	},
-}));
-
 const AboutProject = () => {
 	const classes = useStyles();
 	const {
@@ -321,3 +241,83 @@ const AboutProject = () => {
 };
 
 export default AboutProject;
+
+const useStyles = makeStyles((theme) => ({
+	root: {
+		position: "relative",
+		background: theme.palette.primary.card,
+	},
+	content: {
+		position: "relative",
+	},
+	bgimgDiv: {
+		position: "absolute",
+		display: "flex",
+		justifyContent: "center",
+		alignItems: "center",
+		height: "100%",
+		width: "100%",
+		opacity: 0.1,
+	},
+	bullet: {
+		display: "inline-block",
+		margin: "0 2px",
+		transform: "scale(0.8)",
+	},
+	title: {
+		fontSize: 16,
+	},
+	subtitleDiv: {
+		marginRight: "auto",
+		marginLeft: "auto",
+		maxWidth: 600,
+	},
+	subtitle: {
+		fontWeight: "bold",
+	},
+	consentbutton: {
+		textTransform: "none",
+		marginTop: theme.spacing(1),
+	},
+	terms: {
+		paddingTop: theme.spacing(2),
+	},
+	cardactions: {
+		flexDirection: "row-reverse",
+		paddingRight: theme.spacing(3),
+	},
+	button: {
+		marginTop: theme.spacing(1),
+		marginRight: theme.spacing(1),
+	},
+	actionsContainer: {
+		marginTop: theme.spacing(2),
+	},
+	avatar: {
+		width: theme.spacing(4),
+		height: theme.spacing(4),
+		background: theme.palette.background.default,
+	},
+	avatarDiv: {
+		color: "inherit" /* blue colors for links too */,
+		textDecoration: "none" /* no underline */,
+		borderRadius: "50%",
+	},
+	avagroup: {
+		marginRight: theme.spacing(2),
+		marginLeft: theme.spacing(2),
+	},
+	feedback: {
+		marginRight: "auto",
+		marginLeft: theme.spacing(4),
+		marginBottom: theme.spacing(1),
+		textTransform: "none",
+	},
+	version: {
+		position: "absolute",
+		color: "grey",
+		bottom: 0,
+		right: 10,
+		fontSize: 10,
+	},
+}));
