@@ -8,7 +8,6 @@ import FooterLinks from "./components/FooterLinks";
 import StepperNav from "./components/StepperNav";
 
 // Context Provider
-// import { Provider as AppProvider } from "./context/data/AppContext";
 import { Provider as StepProvider } from "./context/data/StepContext";
 import { Provider as UserProvider } from "./context/data/UserContext";
 import { Provider as SurveyProvider } from "./context/data/SurveyContext";
