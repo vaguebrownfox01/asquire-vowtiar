@@ -15,88 +15,6 @@ import Avatar from "@material-ui/core/Avatar";
 import AvatarGroup from "@material-ui/lab/AvatarGroup";
 import { Button, ButtonGroup, Tooltip } from "@material-ui/core";
 
-const useStyles = makeStyles((theme) => ({
-	grow: {
-		flexGrow: 1,
-	},
-	toolbar: {
-		background: theme.palette.secondary.background,
-	},
-	menuButton: {
-		marginRight: theme.spacing(2),
-	},
-	title: {
-		// display: "none",
-		// [theme.breakpoints.up("sm")]: {
-		// 	display: "block",
-		// },
-		color: theme.palette.primary.main,
-	},
-	inputRoot: {
-		color: "inherit",
-	},
-
-	sectionDesktop: {
-		display: "none",
-		[theme.breakpoints.up("md")]: {
-			display: "flex",
-		},
-	},
-	sectionMobile: {
-		display: "flex",
-		[theme.breakpoints.up("md")]: {
-			display: "none",
-		},
-	},
-	navbuttonsroot: {
-		// display: "flex",
-		flexDirection: "column",
-		alignItems: "center",
-		"& > *": {
-			margin: theme.spacing(1),
-		},
-		display: "none",
-		height: "100%",
-		[theme.breakpoints.up("sm")]: {
-			display: "block",
-		},
-	},
-	navbuttons: {
-		color: theme.palette.background.default,
-		paddingRight: theme.spacing(4),
-		paddingLeft: theme.spacing(4),
-	},
-	badge: {
-		color: theme.palette.background.default,
-	},
-	link: {
-		textDecoration: "none",
-		"&:visited": {
-			color: theme.palette.primary.contrastText,
-		},
-	},
-
-	avatar: {
-		width: theme.spacing(6),
-		height: theme.spacing(6),
-		background: theme.palette.background.default,
-		borderWidth: 1,
-		borderColor: theme.palette.primary.contrastText,
-	},
-	avalink: {
-		// borderWidth: 0,
-	},
-	avagroup: {
-		marginRight: theme.spacing(2),
-	},
-	avatarDiv: {
-		color: "inherit" /* blue colors for links too */,
-		textDecoration: "none" /* no underline */,
-		borderRadius: "50%",
-		borderColor: theme.palette.secondary.dark,
-	},
-}));
-
 function AsqAppBar({ title, history }) {
 	const classes = useStyles();
 	const [anchorEl, setAnchorEl] = React.useState(null);
@@ -297,3 +215,81 @@ function AsqAppBar({ title, history }) {
 }
 
 export default AsqAppBar;
+
+const useStyles = makeStyles((theme) => ({
+	grow: {
+		flexGrow: 1,
+	},
+	toolbar: {
+		background: theme.palette.secondary.background,
+	},
+	menuButton: {
+		marginRight: theme.spacing(2),
+	},
+	title: {
+		color: theme.palette.primary.main,
+	},
+	inputRoot: {
+		color: "inherit",
+	},
+
+	sectionDesktop: {
+		display: "none",
+		[theme.breakpoints.up("md")]: {
+			display: "flex",
+		},
+	},
+	sectionMobile: {
+		display: "flex",
+		[theme.breakpoints.up("md")]: {
+			display: "none",
+		},
+	},
+	navbuttonsroot: {
+		// display: "flex",
+		flexDirection: "column",
+		alignItems: "center",
+		"& > *": {
+			margin: theme.spacing(1),
+		},
+		display: "none",
+		height: "100%",
+		[theme.breakpoints.up("sm")]: {
+			display: "block",
+		},
+	},
+	navbuttons: {
+		color: theme.palette.background.default,
+		paddingRight: theme.spacing(4),
+		paddingLeft: theme.spacing(4),
+	},
+	badge: {
+		color: theme.palette.background.default,
+	},
+	link: {
+		textDecoration: "none",
+		"&:visited": {
+			color: theme.palette.primary.contrastText,
+		},
+	},
+
+	avatar: {
+		width: theme.spacing(6),
+		height: theme.spacing(6),
+		background: theme.palette.background.default,
+		borderWidth: 1,
+		borderColor: theme.palette.primary.contrastText,
+	},
+	avalink: {
+		// borderWidth: 0,
+	},
+	avagroup: {
+		marginRight: theme.spacing(2),
+	},
+	avatarDiv: {
+		color: "inherit" /* blue colors for links too */,
+		textDecoration: "none" /* no underline */,
+		borderRadius: "50%",
+		borderColor: theme.palette.secondary.dark,
+	},
+}));
