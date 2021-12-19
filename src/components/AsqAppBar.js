@@ -15,7 +15,7 @@ import Avatar from "@material-ui/core/Avatar";
 import AvatarGroup from "@material-ui/lab/AvatarGroup";
 import { Button, ButtonGroup, Tooltip } from "@material-ui/core";
 
-function AsqAppBar({ title, history }) {
+function AsqAppBar({ title }) {
 	const classes = useStyles();
 	const [anchorEl, setAnchorEl] = React.useState(null);
 	const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
