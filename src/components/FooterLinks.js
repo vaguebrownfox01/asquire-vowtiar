@@ -7,19 +7,6 @@ import HomeIcon from "@material-ui/icons/Home";
 import FeedbackIcon from "@material-ui/icons/Feedback";
 import { grey } from "@material-ui/core/colors";
 
-const useStyles = makeStyles((theme) => ({
-	root: {
-		position: "relative",
-		bottom: "0",
-		width: "100%",
-		height: 32 * 2,
-	},
-	avatar: {
-		width: theme.spacing(7),
-		height: theme.spacing(7),
-	},
-}));
-
 const makeActionStyles = makeStyles((theme) => ({
 	root: {
 		color: grey[700],
@@ -72,3 +59,16 @@ export default function LabelBottomNavigation() {
 		</BottomNavigation>
 	);
 }
+
+const useStyles = makeStyles((theme) => ({
+	root: {
+		position: "relative",
+		bottom: "0",
+		width: "100%",
+		height: 32 * 2,
+	},
+	avatar: {
+		width: theme.spacing(7),
+		height: theme.spacing(7),
+	},
+}));
