@@ -8,25 +8,6 @@ import DropArrowIcon from "@material-ui/icons/ArrowDropDown";
 import RefreshIcon from "@material-ui/icons/Refresh";
 import DeviceList from "../pieces/DevList";
 
-const useStyles = makeStyles((theme) => ({
-	devices: {
-		display: "flex",
-		justifyContent: "space-around",
-		alignItems: "flex-start",
-		alignContent: "flex-start",
-		padding: theme.spacing(0),
-	},
-	deviceSelect: {
-		maxWidth: theme.spacing(16),
-	},
-	buttonRefresh: {
-		textTransform: "none",
-		marginBottom: theme.spacing(4),
-	},
-	progress: {
-		minHeight: 34,
-	},
-}));
 const RecDevices = ({ recordState, handleRefresh }) => {
 	const classes = useStyles();
 
@@ -73,3 +54,23 @@ const RecDevices = ({ recordState, handleRefresh }) => {
 };
 
 export default RecDevices;
+
+const useStyles = makeStyles((theme) => ({
+	devices: {
+		display: "flex",
+		justifyContent: "space-around",
+		alignItems: "flex-start",
+		alignContent: "flex-start",
+		padding: theme.spacing(0),
+	},
+	deviceSelect: {
+		maxWidth: theme.spacing(16),
+	},
+	buttonRefresh: {
+		textTransform: "none",
+		marginBottom: theme.spacing(4),
+	},
+	progress: {
+		minHeight: 34,
+	},
+}));
