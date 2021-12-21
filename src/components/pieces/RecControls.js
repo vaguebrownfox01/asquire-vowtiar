@@ -162,7 +162,6 @@ const useStyles = makeStyles((theme) => ({
 		},
 	},
 	playerShow: {
-		// display: "none",
 		transform: "scale(0.8)",
 	},
 	playerHide: {
