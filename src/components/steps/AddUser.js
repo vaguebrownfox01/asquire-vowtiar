@@ -119,6 +119,8 @@ const AddUserComponent = () => {
 						{bull} Enter your name and click <b>ADD USER</b>. <br />
 						{bull} <b>Username</b> will be used to save your
 						progress. <br />
+						(Don't use <b>incognito</b> or clear browser data)
+						<br />
 						{bull} You can record for your <b>family and friends</b>{" "}
 						in the same app.
 						<br />
