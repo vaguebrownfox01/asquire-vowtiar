@@ -76,13 +76,7 @@ export default function VerticalLinearStepper({ components }) {
 
 			{stepState.activeStep === components.length && (
 				<Paper square elevation={0} className={classes.resetContainer}>
-					{/* <React.Suspense
-						fallback={
-							<CircularProgress color="secondary" size={28} />
-						}
-					> */}
 					<Finish />
-					{/* </React.Suspense> */}
 					<Button
 						variant="outlined"
 						disabled={stepState.activeStep === 0}
