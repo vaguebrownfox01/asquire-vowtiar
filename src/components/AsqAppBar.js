@@ -182,19 +182,6 @@ function AsqAppBar({ title }) {
 							</Tooltip>
 						</a>
 					</AvatarGroup>
-					{/* <div className={classes.sectionDesktop}>
-						<Messages />
-						<IconButton
-							edge="end"
-							aria-label="account of current user"
-							aria-controls={menuId}
-							aria-haspopup="true"
-							onClick={handleProfileMenuOpen}
-							color="primary"
-						>
-							<AccountCircle />
-						</IconButton>
-					</div> */}
 					<div className={classes.sectionMobile}>
 						<IconButton
 							aria-label="show more"
