@@ -190,7 +190,9 @@ const NoiseInst = () => {
 			</Typography>
 			<Typography variant="body1" align="center">
 				Make sure your surrounding is absolutely{" "}
-				<b>silent and disturbance free!</b>
+				<b>silent and disturbance free!</b> <br />
+				<span style={{ color: "orangered" }}>Important:</span>{" "}
+				<b>Don't use Noise Cancelling headphones</b> for recording!
 			</Typography>
 			<Typography variant="body1" align="center" gutterBottom>
 				Also, drink a <b>glass of water</b>! Keep your throat
