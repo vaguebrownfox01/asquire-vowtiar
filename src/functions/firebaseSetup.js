@@ -3,7 +3,7 @@ exports.PROJECT_ID = "asquire-mox";
 
 // Version code
 exports.VERSION = "dsp";
-exports.WEEK = 3;
+exports.WEEK = 4;
 
 // Firestore
 exports.DATABASE_URL = "https://asquire-mox.firebaseio.com";
