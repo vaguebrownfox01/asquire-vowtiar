@@ -9,7 +9,7 @@ import { Avatar, CardActions, Tooltip } from "@material-ui/core";
 
 import { components } from "../../App";
 
-import { VERSION } from "../../functions/firebaseSetup";
+import { VERSION, WEEK } from "../../functions/firebaseSetup";
 
 // Context
 import { Context as StepContext } from "../../context/data/StepContext";
@@ -33,7 +33,9 @@ const AboutProject = () => {
 	return (
 		<>
 			<Card className={classes.root} elevation={8}>
-				<p className={classes.version}>ver:{VERSION}</p>
+				<p className={classes.version}>
+					ver:{VERSION}|{WEEK}
+				</p>
 				<CardContent className={classes.content}>
 					<div className={classes.bgimgDiv}>
 						<img alt="Asquire logo" src={"/image/asq-logo.png"} />
