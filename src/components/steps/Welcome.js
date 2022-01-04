@@ -9,6 +9,7 @@ import { Avatar, CardActions, Tooltip } from "@material-ui/core";
 
 import { components } from "../../App";
 
+// firebase constants
 import { VERSION, WEEK } from "../../functions/firebaseSetup";
 
 // Context
