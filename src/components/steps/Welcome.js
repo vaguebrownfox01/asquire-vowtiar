@@ -130,6 +130,8 @@ const AboutProject = () => {
 							</b>
 							<br /> Hope you have <b>20 minutes</b> of your time
 							to spare!
+							<br /> Please don't use incognito mode in your
+							browser, you progress won't be persisted.
 						</Typography>
 					</div>
 					<div className={classes.terms}>
