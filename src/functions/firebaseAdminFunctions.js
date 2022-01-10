@@ -62,5 +62,28 @@ const setStims = async () => {
 	}
 };
 
-setSurveyQuestions();
-setStims();
+const getConRemunDeets = async () => {
+	const remunRef = db.collection("remun-register-dsp");
+	const d = await remunRef.get();
+	d.forEach(async (doc) => {
+		console.log("doc: ", doc.data());
+
+		const remunRefSub = db.collection(
+			`/remun-register-dsp/${doc.id}/registered-users`
+		);
+		const dd = await remunRefSub.get();
+
+		if (dd.docs.length > 0) {
+			dd.forEach((docc) => {
+				console.log("doc: ", docc.data());
+			});
+		} else {
+			console.log("doc: ", doc.data());
+		}
+	});
+};
+
+// setSurveyQuestions();
+// setStims();
+
+getConRemunDeets();
