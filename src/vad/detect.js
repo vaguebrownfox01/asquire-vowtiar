@@ -44,7 +44,7 @@ export const detectStims = async (audioUrl, frequency = 555) => {
 
 	// count stims
 	const res = await countStims(audioArr, outputAudioBuffer.sampleRate);
-	console.log("filter res count", res);
+	// console.log("filter res count", res);
 	// res.spectrum = spectrum;
 	// let wavop = toWav(outputAudioBuffer);
 
