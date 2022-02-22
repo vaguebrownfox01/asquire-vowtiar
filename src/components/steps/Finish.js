@@ -241,7 +241,7 @@ export default function Finish() {
 					variant="body2"
 					gutterBottom
 				>
-					Here's something fun!
+					Here's something fun! click it! :)
 				</Typography>
 
 				{!anim && (
