@@ -182,7 +182,7 @@ const recordLoadStimsAction = (dispatch) => {
 
 		if (stims) {
 			console.log(stims);
-			let fixed = [0, 1, 2, 3, 4];
+			let fixed = [0, 1, 2, 3, 4, 5, 6];
 			if (user.stimOrder ? user.stimOrder.length === 0 : true) {
 				let keys = [
 					...fixed,

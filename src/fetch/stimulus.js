@@ -10,8 +10,28 @@ const getStimObj = (array) => {
 
 const stimArray = [
 	{
+		label: "sents",
+		tag: "sent",
+		skipScore: 1,
+		imageLink: "",
+		audioDescriptionLink: null,
+
+		description:
+			'Start recording and Say **"I am very excited to contribute!"** :)',
+	},
+	{
+		label: "ambient",
+		tag: "~noise~",
+		skipScore: 1,
+		imageLink: "",
+		audioDescriptionLink: null,
+
+		description: "Record **Noise** in you surrounding for **ONE minute**",
+	},
+	{
 		label: "breathe",
 		tag: "breath",
+		skipScore: 1,
 		imageLink: "",
 		audioDescriptionLink:
 			"https://firebasestorage.googleapis.com/v0/b/asquire-ch3oh.appspot.com/o/instructions_audio%2Fbreath.WAV?alt=media&token=c607da11-1ead-4cd7-9d64-42a85a356cf2",
@@ -22,6 +42,7 @@ const stimArray = [
 	{
 		label: "cough",
 		tag: "cough",
+		skipScore: "cough",
 		imageLink: "",
 		audioDescriptionLink:
 			"https://firebasestorage.googleapis.com/v0/b/asquire-ch3oh.appspot.com/o/instructions_audio%2Fcough.WAV?alt=media&token=1bfdc549-bc07-42d9-aa2b-b7e016f541f4",
@@ -57,6 +78,7 @@ const stimArray = [
 		description:
 			"Take a deep breath in and say '**Uuuuuuu**' as in 'H**oo**d'  until you're out of breath. **Repeat 3 times**",
 	},
+
 	{
 		label: "Ooo",
 		tag: "oo",
@@ -65,7 +87,7 @@ const stimArray = [
 			"https://firebasestorage.googleapis.com/v0/b/asquire-ch3oh.appspot.com/o/instructions_audio%2Foo.WAV?alt=media&token=08b46138-d744-48ac-87ae-314d6ba89f99",
 
 		description:
-			"Take a deep breath in and say '**Ooooooo**' as in 'G**o**'  until you're out of breath. **Repeat 3 times**",
+			"Take a deep breath in and say '**Ooo**' as in 'G**o**' (NOT Uuu!!!)  until you're out of breath. **Repeat 3 times**",
 	},
 	{
 		label: "Sss",

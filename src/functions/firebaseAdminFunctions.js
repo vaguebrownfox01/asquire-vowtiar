@@ -28,7 +28,7 @@ const setSurveyQuestions = async () => {
 		await questionRef.set(questions);
 		console.log("Done uploading questions");
 	} else {
-		console.log("Faled to upload questions");
+		console.log("Failed to upload questions");
 	}
 };
 
@@ -51,7 +51,9 @@ const setStims = async () => {
 	}
 
 	for (let i in Object.keys(stimulus)) {
-		stimulus[i]["audioDescriptionLink"] = stimsUrls[stimulus[i].tag];
+		stimulus[i]["audioDescriptionLink"] = stimsUrls[stimulus[i].tag]
+			? stimsUrls[stimulus[i].tag]
+			: "";
 	}
 
 	if (stimulus) {
@@ -62,7 +64,7 @@ const setStims = async () => {
 	}
 };
 
-const getConRemunDeets = async () => {
+const expConRemunDeets = async () => {
 	const remunRef = db.collection("remun-register-dsp");
 	const d = await remunRef.get();
 	d.forEach(async (doc) => {
@@ -83,7 +85,19 @@ const getConRemunDeets = async () => {
 	});
 };
 
-// setSurveyQuestions();
-// setStims();
+const expConSurvey = async () => {
+	const surveyRef = db.collection("users_remun_dsp");
+	const d = await surveyRef.get();
+	console.log("[");
+	d.forEach(async (doc) => {
+		console.log(JSON.stringify(doc.data()), ",");
+	});
+	console.log("]");
+};
 
-getConRemunDeets();
+setSurveyQuestions();
+setStims();
+
+// expConRemunDeets();
+
+// expConSurvey();
