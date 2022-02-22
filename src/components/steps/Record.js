@@ -126,8 +126,8 @@ export default function Record() {
 	const handleRecStop = async () => {
 		const res = await recordStopAction();
 
-		switch (recordState.currentStim.tag) {
-			case "breath":
+		switch (recordState.currentStim.skipScore) {
+			case 1:
 				break;
 			case "cough":
 				setVadOpen(true);
