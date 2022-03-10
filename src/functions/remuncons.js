@@ -1,4 +1,4 @@
-[
+const cons = [
 	{
 		paid: false,
 		mobile: "7759806079",
@@ -264,3 +264,5 @@
 		paymentInfo: "vishnuchouhan1155@oksbi",
 	},
 ];
+
+console.log("len", JSON.stringify(cons));

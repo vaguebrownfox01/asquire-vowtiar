@@ -95,7 +95,7 @@ const expConSurvey = async () => {
 	console.log("]");
 };
 
-setSurveyQuestions();
+// setSurveyQuestions();
 setStims();
 
 // expConRemunDeets();

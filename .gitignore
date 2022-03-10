@@ -34,3 +34,7 @@ firebase-debug.log
 .firebaserc
 .firebase
 # fetch
+src/functions/remuncons.js
+src/functions/survey.csv
+src/functions/remundeets.csv
+src/functions/remuncons.js

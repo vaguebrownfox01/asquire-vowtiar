@@ -17,7 +17,7 @@ const stimArray = [
 		audioDescriptionLink: null,
 
 		description:
-			'Start recording and Say **"I am very excited to contribute!"** :)',
+			'Start recording and Say **"I am very excited to contribute!"**',
 	},
 	{
 		label: "ambient",
@@ -26,7 +26,8 @@ const stimArray = [
 		imageLink: "",
 		audioDescriptionLink: null,
 
-		description: "Record **Noise** in you surrounding for **ONE minute**",
+		description:
+			"Keep silent and record sounds in your **surrounding** for about **20 seconds**",
 	},
 	{
 		label: "breathe",
