@@ -54,8 +54,9 @@ const stimArray = [
 		label: "Aaa",
 		tag: "aa",
 		imageLink: "",
-		audioDescriptionLink:
-			"https://firebasestorage.googleapis.com/v0/b/asquire-mox.appspot.com/o/instructions_audio%2Faa.mp3?alt=media&token=4da621d0-fbab-460c-a14e-679e32b537b9",
+		audioDescriptionLink: "",
+		// audioDescriptionLink:
+		// 	"https://firebasestorage.googleapis.com/v0/b/asquire-mox.appspot.com/o/instructions_audio%2Faa.mp3?alt=media&token=4da621d0-fbab-460c-a14e-679e32b537b9",
 		description:
 			"Take a deep breath in and say '**Aaaaaaa**' as in '**Hu**t' until you're out of breath. **Repeat 3 times**",
 	},
