@@ -48,6 +48,20 @@ export const components = [
 ];
 
 const App = () => {
+	// const [volunterId, setVolunterId] = React.useState();
+
+	React.useEffect(() => {
+		const params = new Proxy(new URLSearchParams(window.location.search), {
+			get: (searchParams, prop) => searchParams.get(prop),
+		});
+
+		let volunteerId = params.volunteerId;
+
+		if (volunteerId !== null) {
+			localStorage.setItem("volunteerId", volunteerId);
+		}
+	});
+
 	return (
 		<div className="App">
 			<>
@@ -82,32 +96,32 @@ const App = () => {
 												/>
 												{/* Static Pages */}
 												<Route
-													path="/about"
+													path={`/about`}
 													exact
 													component={About}
 												/>
 												<Route
-													path="/consent"
+													path={`/consent`}
 													exact
 													component={Consent}
 												/>
 												<Route
-													path="/contact"
+													path={`/contact`}
 													exact
 													component={Contact}
 												/>
 												<Route
-													path="/feedback"
+													path={`/feedback`}
 													exact
 													component={Feedback}
 												/>
 												<Route
-													path="/volunteer"
+													path={`/volunteer`}
 													exact
 													component={Volunteer}
 												/>
 												<Route
-													path="/*"
+													path={`/*`}
 													component={NopePage}
 												/>
 											</Switch>
