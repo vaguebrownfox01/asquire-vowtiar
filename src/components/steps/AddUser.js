@@ -31,12 +31,19 @@ const AddUserComponent = () => {
 		stepPreviousAction,
 	} = React.useContext(StepContext);
 
+	const [volunteerId, setvolunteerId] = React.useState(null);
+
 	const [userName, setUserName] = React.useState("");
 	const [added, setAdded] = React.useState(false);
 	const regxUN = /^[a-z]+(-[a-z]+)*$/;
 
 	React.useEffect(() => {
+		const _volunteerId = localStorage.getItem("volunteerId");
+
+		setvolunteerId(_volunteerId);
+
 		userGetAllAction();
+
 		return () => {};
 	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -68,10 +75,11 @@ const AddUserComponent = () => {
 
 	const handleAddUser = (e) => {
 		userName.length > 0 &&
-			userAddAction(userName).then((res) => {
+			userAddAction({ userName, volunteerId }).then((res) => {
 				if (!res) {
 					setAdded(false);
 				} else {
+					localStorage.setItem("volunteerId", res.volunteerId);
 					handleUserSelect(res);
 				}
 			});
@@ -110,6 +118,7 @@ const AddUserComponent = () => {
 							handleUserName,
 						}}
 					/>
+
 					<Typography
 						className={classes.inst}
 						variant="body2"
@@ -125,6 +134,26 @@ const AddUserComponent = () => {
 						in the same app.
 						<br />
 					</Typography>
+
+					{userState.allUsers.length > 0 && (
+						<Typography
+							className={classes.inst}
+							variant="body2"
+							component="p"
+							color="textPrimary"
+						>
+							Or <br />
+							{bull} You can <b>click</b> on your <b>Username</b>{" "}
+							to continue...
+							<br />
+						</Typography>
+					)}
+
+					{volunteerId && (
+						<Typography variant="body2" color="textSecondary">
+							{`invited by ${volunteerId}`}
+						</Typography>
+					)}
 				</CardContent>
 			</Card>
 			<div className={classes.actionsContainer}>

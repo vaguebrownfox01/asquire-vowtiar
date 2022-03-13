@@ -66,6 +66,12 @@ const useStyles = makeStyles((theme) => ({
 		margin: theme.spacing(2),
 		textTransform: "none",
 	},
+	copyLinkButton: {
+		textTransform: "none",
+		padding: theme.spacing(0, 2),
+		margin: theme.spacing(0, 0, 2),
+		fontWeight: "900",
+	},
 	"@keyframes zoomies": {
 		"0%": {
 			transform: "scale(1)",
@@ -98,16 +104,41 @@ export default function Finish() {
 
 	const [anim, setAnim] = React.useState(false);
 	const [done, setDone] = React.useState(false);
+	const [link, setLink] = React.useState({ volunteerLink: "", msg: "" });
 
 	React.useEffect(() => {
 		let d =
 			userState.selectedUser.completed >=
 			userState.selectedUser.stimOrder.length;
 		setDone(d);
+
+		let vLink = `https://asquire.web.app/?volunteerId=${userState.selectedUser.userId}`;
+		let rLink = `https://spire-remuneration.web.app/?userid=${userState.selectedUser.userId}&volunteerId=${userState.selectedUser.volunteerId}`;
+
+		setLink({
+			volunteerLink: vLink,
+			remunLink: rLink,
+			msg: "volunteer: click on the link below to copy!",
+		});
 	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
 	const handleAnim = () => {
 		setAnim(true);
+	};
+
+	const handleCopyLink = () => {
+		copyToClipboard(link.volunteerLink);
+		setLink({
+			...link,
+			msg: "Link copied! Share it with your friends and family!",
+		});
+
+		setTimeout(() => {
+			setLink({
+				...link,
+				msg: "volunteers: click on the link below to copy, again!",
+			});
+		}, 10e3);
 	};
 
 	const { width, height } = useContainerDimensions(vizRef, recordState);
@@ -166,33 +197,52 @@ export default function Finish() {
 					</Typography>
 
 					{done ? (
-						<Button
-							className={classes.button}
-							fullWidth
-							variant="contained"
-							size="large"
-							color="secondary"
-							href={`https://spire-remuneration.web.app/?userid=${userState.selectedUser.userId}`}
-							target="_blank"
-						>
-							Register for compensation
-						</Button>
+						<>
+							<Button
+								className={classes.button}
+								fullWidth
+								variant="contained"
+								size="large"
+								color="secondary"
+								href={link.remunLink}
+								target="_blank"
+							>
+								Register for compensation
+							</Button>
+							<>
+								<Typography variant="body2" gutterBottom>
+									{link.msg}
+								</Typography>
+								<Button
+									className={classes.copyLinkButton}
+									variant="outlined"
+									onClick={handleCopyLink}
+									size="small"
+									color="secondary"
+									gutterBottom
+								>
+									{link.volunteerLink}
+								</Button>
+							</>
+						</>
 					) : (
-						<Typography
-							className={classes.note2}
-							color="textPrimary"
-							variant="body2"
-							gutterBottom
-						>
-							<b>Note: </b>
-							Please complete all the tasks to register for
-							compensation.{" "}
-							<a href="/contact">
-								{" "}
-								<b>Contact us</b>{" "}
-							</a>{" "}
-							if you have any queries.
-						</Typography>
+						<>
+							<Typography
+								className={classes.note2}
+								color="textPrimary"
+								variant="body2"
+								gutterBottom
+							>
+								<b>Note: </b>
+								Please complete all the tasks to register for
+								compensation.{" "}
+								<a href="/contact">
+									{" "}
+									<b>Contact us</b>{" "}
+								</a>{" "}
+								if you have any queries.
+							</Typography>
+						</>
 					)}
 
 					<Button
@@ -268,3 +318,7 @@ export default function Finish() {
 		</Card>
 	);
 }
+
+const copyToClipboard = (text) => {
+	navigator.clipboard.writeText(text);
+};

@@ -27,6 +27,7 @@ const userInitialState = {
 const typicalUser = {
 	userName: "",
 	userId: "",
+	volunteerId: "",
 	stepCount: 1,
 	bioDataDone: false,
 	surveyDone: false,
@@ -86,14 +87,17 @@ const userGetAllAction = (dispatch) => {
 };
 
 const userAddAction = (dispatch) => {
-	return async (userName) => {
+	return async ({ userName, volunteerId }) => {
 		dispatch({ type: "SET_LOADING", payload: true });
 
 		let res = false;
+
+		let userId = `${userName}-${uuid().slice(0, 8)}`;
 		let user = {
 			...typicalUser,
 			userName: userName,
-			userId: `${userName}-${uuid().slice(0, 8)}`,
+			userId: userId,
+			volunteerId: volunteerId ? volunteerId : userId,
 		};
 
 		let uAuth = await firebaseSignUp(user.userId, user.userName); // firebase sign up
