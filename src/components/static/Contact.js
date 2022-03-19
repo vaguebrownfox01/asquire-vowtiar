@@ -77,10 +77,7 @@ export default function Contact() {
 				/>
 				<Typography color="secondary" variant="h6" gutterBottom>
 					SPIRE Lab |&nbsp;
-					<a
-						className={classes.link}
-						href="https://spire.ee.iisc.ac.in/spire/"
-					>
+					<a className={classes.link} href="/image/spire_logo_sq.png">
 						spire.ee.iisc.ac.in/spire
 					</a>
 				</Typography>
