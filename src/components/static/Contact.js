@@ -72,12 +72,15 @@ export default function Contact() {
 				<Avatar
 					alt="Spire lab logo"
 					variant="circular"
-					src={spire_logo_url}
+					src={`/image/spire_logo_sq.png`}
 					className={classes.avatar}
 				/>
 				<Typography color="secondary" variant="h6" gutterBottom>
 					SPIRE Lab |&nbsp;
-					<a className={classes.link} href="/image/spire_logo_sq.png">
+					<a
+						className={classes.link}
+						href="https://spire.ee.iisc.ac.in/spire/"
+					>
 						spire.ee.iisc.ac.in/spire
 					</a>
 				</Typography>
