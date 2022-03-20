@@ -109,13 +109,13 @@ const contacts = [
 		pos: "IISc",
 	},
 	{
-		name: "Jeevan K",
-		email: "jeevank@iisc.ac.in",
-		pos: "Research Assistant",
+		name: "Shaique Solanki",
+		email: "mohammads@iisc.ac.in",
+		pos: "JRF",
 	},
 	{
-		name: "Shaique Solanki",
-		email: "solankishaique@gmail.com",
+		name: "Jeevan K",
+		email: "jeevank@iisc.ac.in",
 		pos: "Research Assistant",
 	},
 ];
