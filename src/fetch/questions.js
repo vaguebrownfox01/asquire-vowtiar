@@ -175,13 +175,14 @@ const questions = {
 	},
 	29: {
 		qno: 29,
-		question: "Are you currently COVID-19 positive?",
+		question: "Are you currently COVID-19 positive or have common cold?",
 		options: ["Yes", "No"],
 		nextQnos: [30],
 	},
 	30: {
 		qno: 30,
-		question: "Have you been COVID-19 positive in last 15 days?",
+		question:
+			"Have you been COVID-19 positive or had cold in last 15 days?",
 		options: ["Yes", "No"],
 		nextQnos: [-1],
 	},
