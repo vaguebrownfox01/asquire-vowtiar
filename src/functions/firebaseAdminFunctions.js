@@ -1,5 +1,6 @@
+const fs = require("fs");
 const admin = require("firebase-admin");
-const serviceAccount = require("./firebaseServiceConfig.json");
+const serviceAccount = require("./firebaseServiceConfig2.json");
 
 const {
 	DATABASE_URL,
@@ -85,19 +86,60 @@ const expConRemunDeets = async () => {
 	});
 };
 
-const expConSurvey = async () => {
-	const surveyRef = db.collection("users_remun_dsp");
+const expConSurvey = async (collection) => {
+	const surveyRef = db.collection(collection);
 	const d = await surveyRef.get();
-	console.log("[");
+
+	const cons = [];
 	d.forEach(async (doc) => {
-		console.log(JSON.stringify(doc.data()), ",");
+		cons.push(doc.data());
 	});
-	console.log("]");
+	let data = JSON.stringify(cons);
+
+	fs.writeFileSync(
+		`/home/darwin/Desktop/SPIRE_Lab/Asquire/Webapp/asquire-nr/src/functions/${collection}.json`,
+		data
+	);
+	// console.log(data);
+
+	// console.log("[");
+	// d.forEach(async (doc) => {
+	// 	console.log(JSON.stringify(doc.data()), ",");
+	// });
+	// console.log("]");
 };
 
-setSurveyQuestions();
+const confiles = async (version, userId) => {
+	const path = `${version}_weekly_data_1/${userId}`;
+
+	const data = await bucket.getFiles({ prefix: path });
+
+	let files = data[0];
+	let conUrls = {};
+
+	for (let file of files) {
+		let url = await file
+			.getSignedUrl({ action: "read", expires: "04-19-2025" })
+			.catch((err) => console.log("url error", err));
+
+		// let name = file.name.replace(/^.*[\\\/]/, "").slice(0, -4);
+		conUrls[file.name] = url[0];
+	}
+
+	console.log(conUrls);
+};
+
+/* SET to server */
+// setSurveyQuestions();
 // setStims();
 
+/* GET from server */
 // expConRemunDeets();
 
-// expConSurvey();
+// expConSurvey("users_remun_yin");
+// expConSurvey("users_remun_yang");
+// expConSurvey("users_remun_koi");
+// expConSurvey("remun-register-yin-1");
+
+/* Contributors files */
+confiles("yang_weekly_data_1/anqa-18ddc889").catch((e) => console.log(e));

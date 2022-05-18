@@ -29,7 +29,8 @@
 		"eject": "react-scripts eject",
 		"serve": "serve -s build",
 		"deploy": "react-scripts build && firebase deploy",
-		"admin": "node src/functions/firebaseAdminFunctions.js"
+		"admin": "node src/functions/firebaseAdminFunctions.js",
+		"local": "node src/functions/localAnalysis.js"
 	},
 	"eslintConfig": {
 		"extends": [
