@@ -142,4 +142,4 @@ const confiles = async (version, userId) => {
 // expConSurvey("remun-register-yin-1");
 
 /* Contributors files */
-confiles("yang_weekly_data_1/anqa-18ddc889").catch((e) => console.log(e));
+confiles("yang", "anqa-18ddc889").catch((e) => console.log(e));
