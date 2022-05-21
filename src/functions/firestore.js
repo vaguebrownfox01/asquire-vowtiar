@@ -39,6 +39,9 @@ export const activeQuery = db
 	.collection(ACTIVE_DOCS)
 	.where("online", "==", "true");
 
+export const volconQuery = (volunteerId) =>
+	db.collection(USERS_COLLECTION).where("volunteerId", "==", volunteerId);
+
 export const firebaseSetActive = async (user, stat) => {
 	const docRefActive = db.collection(ACTIVE_DOCS).doc(user.userId);
 	const data = {
