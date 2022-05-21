@@ -44,8 +44,11 @@ export default function Record() {
 		recordVadAction,
 	} = React.useContext(RecordContext);
 
-	const { state: userState, userUpdateAction } =
-		React.useContext(UserContext);
+	const {
+		state: userState,
+		userUpdateAction,
+		userUpdateCloud,
+	} = React.useContext(UserContext);
 
 	const vizRef = React.useRef();
 	const playRef = React.useRef();
@@ -161,8 +164,11 @@ export default function Record() {
 				...userState.selectedUser,
 				stimCount: finishedStim.sno + 1,
 				completed: completed,
+				recordingDone: completed >= recordState.totalStimCount,
 			};
 			userUpdateAction(user);
+			userUpdateCloud(user);
+
 			recordNextStimAction(completed);
 		});
 	};
