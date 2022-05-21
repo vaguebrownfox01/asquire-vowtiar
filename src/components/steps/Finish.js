@@ -187,7 +187,9 @@ export default function Finish() {
 								{`${link.cons ? link.cons : "0"}`}
 							</Button>
 							<Typography variant="body1" gutterBottom>
-								{`contributor${link.s ? link.s : "s"} so far!`}
+								{`contributor${
+									link.cons === 1 ? "" : "s"
+								} so far!`}
 							</Typography>
 						</div>
 						<Button
