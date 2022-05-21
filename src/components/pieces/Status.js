@@ -1,16 +1,68 @@
-import React from "react";
-
-import { makeStyles } from "@material-ui/core/styles";
+import { CircularProgress } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-
+import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import React from "react";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { activeQuery } from "../../functions/firestore";
-import { CircularProgress } from "@material-ui/core";
+
+export default function Status() {
+	const classes = useStyles();
+
+	const [users] = useCollectionData(activeQuery);
+
+	return (
+		<>
+			{users && (
+				<Card className={classes.root}>
+					<CardContent className={classes.content}>
+						<Grid container spacing={2}>
+							<Grid item className={classes.item} md={12} xs={12}>
+								<Paper
+									className={classes.span}
+									elevation={3}
+									variant="outlined"
+									color="secondary"
+								>
+									{users?.length ? (
+										<Button
+											className={classes.value}
+											color="secondary"
+											variant="text"
+										>
+											{users?.length}
+										</Button>
+									) : (
+										<CircularProgress
+											className={classes.progress}
+											color="secondary"
+											size={16}
+										/>
+									)}
+									<Typography
+										className={classes.key}
+										color="textPrimary"
+										variant="h6"
+										component="div"
+										gutterBottom
+									>
+										{`user${
+											users?.length === 1 ? "" : "s"
+										} currently recording`}
+									</Typography>
+								</Paper>
+							</Grid>
+						</Grid>
+					</CardContent>
+				</Card>
+			)}
+		</>
+	);
+}
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -49,103 +101,3 @@ const useStyles = makeStyles((theme) => ({
 		alignItems: "center",
 	},
 }));
-
-export default function Status() {
-	const classes = useStyles();
-
-	const [users] = useCollectionData(activeQuery);
-
-	return (
-		<Card className={classes.root}>
-			<CardContent className={classes.content}>
-				<Grid container spacing={2}>
-					{/* <Grid item className={classes.item} md={4} xs={12}>
-						<Paper
-							className={classes.span}
-							elevation={3}
-							variant="outlined"
-							color="secondary"
-						>
-							<Button
-								className={classes.value}
-								size="small"
-								color="secondary"
-								variant="text"
-							>
-								{106}
-							</Button>
-							<Typography
-								className={classes.key}
-								color="textPrimary"
-								variant="h6"
-								component="div"
-								gutterBottom
-							>
-								users recorded so far
-							</Typography>
-						</Paper>
-					</Grid> */}
-					<Grid item className={classes.item} md={12} xs={12}>
-						<Paper
-							className={classes.span}
-							elevation={3}
-							variant="outlined"
-							color="secondary"
-						>
-							{users?.length ? (
-								<Button
-									className={classes.value}
-									color="secondary"
-									variant="text"
-								>
-									{users?.length}
-								</Button>
-							) : (
-								<CircularProgress
-									className={classes.progress}
-									color="secondary"
-									size={16}
-								/>
-							)}
-							<Typography
-								className={classes.key}
-								color="textPrimary"
-								variant="h6"
-								component="div"
-								gutterBottom
-							>
-								{`user${
-									users?.length === 1 ? "" : "s"
-								} currently recording`}
-							</Typography>
-						</Paper>
-					</Grid>
-					{/* <Grid item className={classes.item} md={4} xs={12}>
-						<Paper
-							className={classes.span}
-							variant="outlined"
-							color="secondary"
-						>
-							<Button
-								className={classes.value}
-								color="secondary"
-								variant="text"
-							>
-								{1000}
-							</Button>
-							<Typography
-								className={classes.key}
-								color="textPrimary"
-								variant="h6"
-								component="div"
-								gutterBottom
-							>
-								recordings required
-							</Typography>
-						</Paper>
-					</Grid> */}
-				</Grid>
-			</CardContent>
-		</Card>
-	);
-}
