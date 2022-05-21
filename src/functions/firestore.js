@@ -6,13 +6,14 @@ const {
 	CONTENT_COLLECTION,
 	STIM_DOC,
 	SURVEY_DOC,
+	VERSION,
 } = require("./firebaseSetup");
 
 export const firebaseUserData = async (data) => {
 	const userDocRef = db.collection(USERS_COLLECTION).doc(data.userId);
 
 	data = await userDocRef
-		.set(data)
+		.set({ ...data, ver: VERSION })
 		.then(() => data)
 		.catch((err) => {
 			console.log("fb firestore error :: ", err);
