@@ -1,23 +1,20 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { Button, Collapse, IconButton } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
+import { blue, lightGreen, red } from "@material-ui/core/colors";
+import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import { Button, Collapse, IconButton } from "@material-ui/core";
-
 import GoodMoodIcon from "@material-ui/icons/Mood";
 import BadMoodIcon from "@material-ui/icons/MoodBad";
-import OKMoodIcon from "@material-ui/icons/SentimentSatisfiedAltRounded";
 import PagesIcon from "@material-ui/icons/Pages";
-
+import OKMoodIcon from "@material-ui/icons/SentimentSatisfiedAltRounded";
+import React from "react";
 // Context
 import { Context as RecordContext } from "../../context/data/RecordContext";
 import { Context as UserContext } from "../../context/data/UserContext";
-
 import useContainerDimensions from "../../hooks/useContainerDimensions";
-import Worm from "../pieces/Worm";
 import Voice from "../pieces/Voice";
-import { blue, lightGreen, pink, purple, red } from "@material-ui/core/colors";
+import Worm from "../pieces/Worm";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
