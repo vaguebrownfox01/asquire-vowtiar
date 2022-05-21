@@ -1,7 +1,7 @@
 import { Button, Collapse, IconButton } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import { blue, lightGreen, red } from "@material-ui/core/colors";
+import { blue, green, lightGreen, red } from "@material-ui/core/colors";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import GoodMoodIcon from "@material-ui/icons/Mood";
@@ -9,90 +9,14 @@ import BadMoodIcon from "@material-ui/icons/MoodBad";
 import PagesIcon from "@material-ui/icons/Pages";
 import OKMoodIcon from "@material-ui/icons/SentimentSatisfiedAltRounded";
 import React from "react";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 // Context
 import { Context as RecordContext } from "../../context/data/RecordContext";
 import { Context as UserContext } from "../../context/data/UserContext";
+import { volconQuery } from "../../functions/firestore";
 import useContainerDimensions from "../../hooks/useContainerDimensions";
 import Voice from "../pieces/Voice";
 import Worm from "../pieces/Worm";
-
-const useStyles = makeStyles((theme) => ({
-	root: {
-		position: "relative",
-		background: theme.palette.background.default,
-	},
-	title: {
-		display: "flex",
-		justifyContent: "center",
-		cursor: "none",
-		whiteSpace: "pre-wrap",
-	},
-	note: {
-		width: "50%",
-		minWidth: theme.spacing(32),
-	},
-	note2: {
-		width: "40%",
-		minWidth: theme.spacing(24),
-		padding: theme.spacing(1),
-		borderRadius: theme.spacing(1),
-		border: `1px solid ${theme.palette.secondary.main}`,
-	},
-	content: {
-		display: "flex",
-		flexDirection: "column",
-		alignItems: "center",
-	},
-	feedback: {
-		margin: theme.spacing(1),
-		fontSize: theme.spacing(6),
-	},
-	voice: {
-		display: "flex",
-		justifyContent: "center",
-		width: "100%",
-	},
-	funIcon: {
-		height: theme.spacing(8),
-		width: theme.spacing(8),
-		margin: theme.spacing(1),
-		animation: `$spin 4096ms  infinite linear`,
-	},
-	button: {
-		maxWidth: theme.spacing(32),
-		margin: theme.spacing(2),
-		textTransform: "none",
-	},
-	copyLinkButton: {
-		textTransform: "none",
-		padding: theme.spacing(0, 2),
-		margin: theme.spacing(2, 0, 1),
-		fontWeight: "900",
-	},
-	linkMsg: {
-		color: blue[700],
-		fontWeight: "bold",
-	},
-	"@keyframes zoomies": {
-		"0%": {
-			transform: "scale(1)",
-		},
-		"50%": {
-			transform: "scale(1.1)",
-		},
-		"100%": {
-			transform: "scale(1)",
-		},
-	},
-	"@keyframes spin": {
-		from: {
-			transform: "rotate(0deg)",
-		},
-		to: {
-			transform: "rotate(360deg)",
-		},
-	},
-}));
 
 export default function Finish() {
 	const classes = useStyles();
@@ -105,7 +29,24 @@ export default function Finish() {
 
 	const [anim, setAnim] = React.useState(false);
 	const [done, setDone] = React.useState(false);
-	const [link, setLink] = React.useState({ volunteerLink: "", msg: "" });
+	const [link, setLink] = React.useState({
+		volunteerLink: "",
+		msg: "",
+		query: null,
+		cons: "0",
+		s: "s",
+	});
+
+	const [volcons] = useCollectionData(link.query);
+
+	React.useEffect(() => {
+		if (!volcons) return;
+
+		const cons = `${
+			volcons?.filter((c) => c.recordingDone)?.length || "0"
+		}`;
+		setLink((p) => ({ ...p, cons, s: cons === 1 ? "" : "s" }));
+	}, [volcons]);
 
 	React.useEffect(() => {
 		let d =
@@ -116,10 +57,12 @@ export default function Finish() {
 		let vLink = `https://asquire.web.app/?volunteerId=${userState.selectedUser.userId}`;
 		let rLink = `https://spire-remuneration.web.app/?userid=${userState.selectedUser.userId}&volunteerId=${userState.selectedUser.volunteerId}`;
 
+		let query = volconQuery(userState.selectedUser.volunteerId);
 		setLink({
 			volunteerLink: vLink,
 			remunLink: rLink,
 			msg: "Volunteers: click on the link above to copy!",
+			query: query,
 		});
 	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -232,6 +175,21 @@ export default function Finish() {
 					)}
 
 					<>
+						<div className={classes.vcount}>
+							<Typography variant="body1" gutterBottom>
+								{`You have invited...`}
+							</Typography>
+							<Button
+								className={classes.value}
+								color="secondary"
+								variant="text"
+							>
+								{`${link.cons ? link.cons : "0"}`}
+							</Button>
+							<Typography variant="body1" gutterBottom>
+								{`contributor${link.s ? link.s : "s"} so far!`}
+							</Typography>
+						</div>
 						<Button
 							className={classes.copyLinkButton}
 							variant="outlined"
@@ -297,7 +255,7 @@ export default function Finish() {
 					variant="body2"
 					gutterBottom
 				>
-					Here's something fun! click it! :)
+					{`Here's something fun! click it! :)`}
 				</Typography>
 
 				{!anim && (
@@ -328,3 +286,95 @@ export default function Finish() {
 const copyToClipboard = (text) => {
 	navigator.clipboard.writeText(text);
 };
+
+const useStyles = makeStyles((theme) => ({
+	root: {
+		position: "relative",
+		background: theme.palette.background.default,
+	},
+	title: {
+		display: "flex",
+		justifyContent: "center",
+		cursor: "none",
+		whiteSpace: "pre-wrap",
+	},
+	note: {
+		width: "50%",
+		minWidth: theme.spacing(32),
+	},
+	note2: {
+		width: "40%",
+		minWidth: theme.spacing(24),
+		padding: theme.spacing(1),
+		borderRadius: theme.spacing(1),
+		border: `1px solid ${theme.palette.secondary.main}`,
+	},
+	content: {
+		display: "flex",
+		flexDirection: "column",
+		alignItems: "center",
+	},
+	feedback: {
+		margin: theme.spacing(1),
+		fontSize: theme.spacing(6),
+	},
+	voice: {
+		display: "flex",
+		justifyContent: "center",
+		width: "100%",
+	},
+	funIcon: {
+		height: theme.spacing(8),
+		width: theme.spacing(8),
+		margin: theme.spacing(1),
+		animation: `$spin 4096ms  infinite linear`,
+	},
+	button: {
+		maxWidth: theme.spacing(32),
+		margin: theme.spacing(2),
+		textTransform: "none",
+	},
+	copyLinkButton: {
+		textTransform: "none",
+		padding: theme.spacing(0, 2),
+		margin: theme.spacing(2, 0, 1),
+		fontWeight: "900",
+	},
+	linkMsg: {
+		color: blue[700],
+		fontWeight: "bold",
+	},
+	vcount: {
+		display: "flex",
+		flexDirection: "column",
+		justifyContent: "center",
+		border: "4px dotted",
+		borderRadius: "8px",
+		borderColor: green[700],
+		padding: theme.spacing(2),
+		margin: theme.spacing(2, 0, 0),
+	},
+	value: {
+		fontSize: 42,
+		color: green[900],
+	},
+	"@keyframes zoomies": {
+		"0%": {
+			transform: "scale(1)",
+		},
+		"50%": {
+			transform: "scale(1.1)",
+		},
+		"100%": {
+			transform: "scale(1)",
+		},
+	},
+	"@keyframes spin": {
+		from: {
+			transform: "rotate(0deg)",
+		},
+		to: {
+			transform: "rotate(360deg)",
+		},
+	},
+}));
