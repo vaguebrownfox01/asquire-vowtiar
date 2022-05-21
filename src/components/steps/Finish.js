@@ -17,7 +17,7 @@ import { Context as UserContext } from "../../context/data/UserContext";
 import useContainerDimensions from "../../hooks/useContainerDimensions";
 import Worm from "../pieces/Worm";
 import Voice from "../pieces/Voice";
-import { lightGreen, red } from "@material-ui/core/colors";
+import { blue, lightGreen, pink, purple, red } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -69,8 +69,12 @@ const useStyles = makeStyles((theme) => ({
 	copyLinkButton: {
 		textTransform: "none",
 		padding: theme.spacing(0, 2),
-		margin: theme.spacing(0, 0, 2),
+		margin: theme.spacing(2, 0, 1),
 		fontWeight: "900",
+	},
+	linkMsg: {
+		color: blue[700],
+		fontWeight: "bold",
 	},
 	"@keyframes zoomies": {
 		"0%": {
@@ -118,7 +122,7 @@ export default function Finish() {
 		setLink({
 			volunteerLink: vLink,
 			remunLink: rLink,
-			msg: "volunteer: click on the link below to copy!",
+			msg: "Volunteers: click on the link above to copy!",
 		});
 	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -136,7 +140,7 @@ export default function Finish() {
 		setTimeout(() => {
 			setLink({
 				...link,
-				msg: "volunteers: click on the link below to copy, again!",
+				msg: "Volunteers: click on the link above to copy, again!",
 			});
 		}, 10e3);
 	};
@@ -209,21 +213,6 @@ export default function Finish() {
 							>
 								Register for compensation
 							</Button>
-							<>
-								<Typography variant="body2" gutterBottom>
-									{link.msg}
-								</Typography>
-								<Button
-									className={classes.copyLinkButton}
-									variant="outlined"
-									onClick={handleCopyLink}
-									size="small"
-									color="secondary"
-									gutterBottom
-								>
-									{link.volunteerLink}
-								</Button>
-							</>
 						</>
 					) : (
 						<>
@@ -244,6 +233,26 @@ export default function Finish() {
 							</Typography>
 						</>
 					)}
+
+					<>
+						<Button
+							className={classes.copyLinkButton}
+							variant="outlined"
+							onClick={handleCopyLink}
+							size="small"
+							color="secondary"
+							gutterBottom
+						>
+							{link.volunteerLink}
+						</Button>
+						<Typography
+							className={classes.linkMsg}
+							variant="body2"
+							gutterBottom
+						>
+							{link.msg}
+						</Typography>
+					</>
 
 					<Button
 						className={classes.button}
