@@ -57,7 +57,7 @@ export default function Finish() {
 		let vLink = `https://asquire.web.app/?volunteerId=${userState.selectedUser.userId}`;
 		let rLink = `https://spire-remuneration.web.app/?userid=${userState.selectedUser.userId}&volunteerId=${userState.selectedUser.volunteerId}`;
 
-		let query = volconQuery(userState.selectedUser.volunteerId);
+		let query = volconQuery(userState.selectedUser.userId);
 		setLink({
 			volunteerLink: vLink,
 			remunLink: rLink,
