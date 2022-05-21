@@ -1,6 +1,6 @@
 const fs = require("fs");
 const admin = require("firebase-admin");
-const serviceAccount = require("./firebaseServiceConfig2.json");
+const serviceAccount = require("./firebaseServiceConfig3.json");
 
 const {
 	DATABASE_URL,
@@ -97,7 +97,7 @@ const expConSurvey = async (collection) => {
 	let data = JSON.stringify(cons);
 
 	fs.writeFileSync(
-		`/home/darwin/Desktop/SPIRE_Lab/Asquire/Webapp/asquire-nr/src/functions/${collection}.json`,
+		`/home/jeevan/Documents/developer/asquire-vowtiar/src/functions/exports/${collection}.json`,
 		data
 	);
 	// console.log(data);
@@ -136,10 +136,11 @@ const confiles = async (version, userId) => {
 /* GET from server */
 // expConRemunDeets();
 
-// expConSurvey("users_remun_yin");
-// expConSurvey("users_remun_yang");
-// expConSurvey("users_remun_koi");
-// expConSurvey("remun-register-yin-1");
+expConSurvey("users_remun_yin");
+expConSurvey("users_remun_yang");
+expConSurvey("users_remun_koi");
+expConSurvey("remun-register-yin-1");
+expConSurvey("remun-register-koi-1");
 
 /* Contributors files */
-confiles("yang", "anqa-18ddc889").catch((e) => console.log(e));
+// confiles("yang", "anqa-18ddc889").catch((e) => console.log(e));

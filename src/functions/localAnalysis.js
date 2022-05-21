@@ -1,6 +1,9 @@
-const yin = require("./users_remun_yin.json");
-const yang = require("./users_remun_yang.json");
-const koi = require("./users_remun_koi.json");
+let yin = require("./exports/users_remun_yin.json");
+let yang = require("./exports/users_remun_yang.json");
+let koi = require("./exports/users_remun_koi.json");
+let koi_remun = require("./exports/remun-register-koi-1.json");
+let yin_remun = require("./exports/remun-register-yin-1.json");
+
 const fs = require("fs");
 
 // console.log(koi);
@@ -21,13 +24,30 @@ const ex = {
 	stepCount: 1,
 };
 
+const dataObj = { yin, yang, koi };
+
+const putVer = (data) => {
+	let keys = Object.keys(data);
+	let all = [];
+	keys.forEach((k) => {
+		let d = data[k].map((p) => ({ ...p, ver: k }));
+		all = [...all, ...d];
+	});
+
+	return all;
+};
+
+const data = putVer(dataObj);
+
+console.log();
+
 const getVolCon = (d, filename) => {
 	let data = d.reduce((p, c, a) => {
 		p = {
 			...p,
 			[c.volunteerId]: p[c.volunteerId]
-				? [...p[c.volunteerId], c.userId]
-				: [c.userId],
+				? [...p[c.volunteerId], { id: c.userId, ver: c.ver }]
+				: [{ id: c.userId, ver: c.ver }],
 		};
 
 		return p;
@@ -36,9 +56,9 @@ const getVolCon = (d, filename) => {
 	data = JSON.stringify(data);
 
 	fs.writeFileSync(
-		`/home/darwin/Desktop/SPIRE_Lab/Asquire/Webapp/asquire-nr/src/functions/${filename}.json`,
+		`/home/jeevan/Documents/developer/asquire-vowtiar/src/functions/exports/${filename}.json`,
 		data
 	);
 };
 
-console.log(getVolCon([...yin, ...yang, ...koi], "volconcol"));
+getVolCon(data, "volconcol");

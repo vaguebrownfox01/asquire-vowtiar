@@ -28,24 +28,12 @@ yarn-error.log*
 .firebase/hosting.YnVpbGQ.cache
 
 # firebaseAdminFunctions.js
-firebaseServiceConfig.json
+firebaseServiceConfig*.json
 fbAdminConfig.json
 firebase-debug.log
 .firebaserc
 .firebase
 # fetch
-src/functions/remuncons.js
-src/functions/survey.csv
-src/functions/remundeets.csv
-src/functions/remuncons.js
-src/functions/firebaseServiceConfig2.json
-users_remun_koi.json
-src/functions/remun-register-yin-1.json
-src/functions/survey_yang.json
-src/functions/survey_yin.json
-src/functions/undefined.json
-src/functions/users_remun_koi.json
-src/functions/users_remun_yang.json
-src/functions/users_remun_yin.json
-src/functions/volconcol.csv
-src/functions/volconcol.json
+
+# firebase exports
+src/functions/exports/*
