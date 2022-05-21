@@ -1,16 +1,17 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import {
+	Avatar,
 	Card,
 	CardContent,
-	Avatar,
-	Tooltip,
+	List,
+	ListItem,
+	ListItemAvatar,
 	ListItemText,
+	Tooltip,
 } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import { List, ListItem, ListItemAvatar } from "@material-ui/core";
 import MailIcon from "@material-ui/icons/Mail";
-import { spire_logo_url } from "../../functions/firebaseSetup";
+import React from "react";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
