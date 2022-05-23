@@ -44,9 +44,9 @@ export default function Finish() {
 	React.useEffect(() => {
 		if (!volcons) return;
 
-		const cons = `${
-			volcons?.filter((c) => c.recordingDone)?.length || "0"
-		}`;
+		const cons = (volcons ? volcons : []).filter(
+			(c) => c.recordingDone
+		).length;
 
 		setVolcont(() => cons);
 
@@ -193,7 +193,7 @@ export default function Finish() {
 								color="secondary"
 								variant="text"
 							>
-								{`${volcont ? volcont : "0"}`}
+								{`${volcont}`}
 							</Button>
 							<Typography variant="body1" gutterBottom>
 								{`contributor${
