@@ -1,17 +1,16 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
-
+import { makeStyles } from "@material-ui/core/styles";
+import React from "react";
 // Context
 import { Context as StepContext } from "../../context/data/StepContext";
-import { Context as UserContext } from "../../context/data/UserContext";
 import { Context as SurveyContext } from "../../context/data/SurveyContext";
-
+import { Context as UserContext } from "../../context/data/UserContext";
 // Pieces
 import Question from "../pieces/Question";
+import SurveyProgress from "./SurveyProgress";
 
 const Survey = () => {
 	const classes = useStyles();
@@ -49,6 +48,18 @@ const Survey = () => {
 		<Card className={classes.root} elevation={8}>
 			<CardContent>
 				<Question anim={surveyState.surveyAnim} />
+				{surveyState.allQuestions && (
+					<div className={classes.surveyProg}>
+						<SurveyProgress
+							{...{
+								questions: Object.keys(
+									surveyState.allQuestions
+								),
+								activeQno: surveyState.currentQuestion.qno,
+							}}
+						/>
+					</div>
+				)}
 				{userState.loading && (
 					<CircularProgress color="secondary" size={28} />
 				)}
@@ -76,6 +87,13 @@ const useStyles = makeStyles((theme) => ({
 		marginTop: theme.spacing(1),
 		marginBottom: theme.spacing(2),
 		marginRight: theme.spacing(1),
+	},
+	surveyProg: {
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
+		maxWidth: "50ch",
+		margin: "auto",
 	},
 }));
 
