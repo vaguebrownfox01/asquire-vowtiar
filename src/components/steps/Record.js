@@ -27,8 +27,11 @@ const MAX_REC_DURATION = 121000;
 export default function Record() {
 	const classes = useStyles();
 
-	const { stepNextAction, stepPreviousAction } =
-		React.useContext(StepContext);
+	const {
+		state: stepState,
+		stepNextAction,
+		stepPreviousAction,
+	} = React.useContext(StepContext);
 
 	const {
 		state: recordState,
@@ -58,7 +61,7 @@ export default function Record() {
 
 	const [shape, setShape] = React.useState(false);
 
-	const [instModalOpen, setInstOpen] = React.useState(true);
+	const [instModalOpen, setInstOpen] = React.useState(false);
 
 	const [vadModalOpen, setVadOpen] = React.useState(false);
 
@@ -72,6 +75,16 @@ export default function Record() {
 	const handleSpectrumShape = () => setShape((preshape) => !preshape);
 
 	React.useEffect(() => {
+		if (
+			userState.selectedUser.recordingDone &&
+			stepState.previousStep < stepState.activeStep
+		) {
+			stepNextAction();
+			return;
+		}
+
+		setInstOpen(!userState.selectedUser.recordingDone);
+
 		recordLoadStimsAction(userState.selectedUser).then((user) =>
 			user ? userUpdateAction(user) : null
 		);
