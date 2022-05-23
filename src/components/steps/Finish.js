@@ -31,13 +31,14 @@ export default function Finish() {
 	const [done, setDone] = React.useState(false);
 	const [link, setLink] = React.useState({
 		volunteerLink: "",
+		remunLink: "",
 		msg: "",
-		query: null,
-		cons: "0",
-		s: "s",
 	});
 
-	const [volcons] = useCollectionData(link.query);
+	const [query, setQuery] = React.useState(null);
+	const [volcont, setVolcont] = React.useState(0);
+
+	const [volcons] = useCollectionData(query);
 
 	React.useEffect(() => {
 		if (!volcons) return;
@@ -45,6 +46,9 @@ export default function Finish() {
 		const cons = `${
 			volcons?.filter((c) => c.recordingDone)?.length || "0"
 		}`;
+
+		setVolcont(() => cons);
+
 		setLink((p) => ({ ...p, cons, s: cons === 1 ? "" : "s" }));
 	}, [volcons]);
 
@@ -57,14 +61,15 @@ export default function Finish() {
 		let vLink = `https://asquire.web.app/?volunteerId=${userState.selectedUser.userId}`;
 		let rLink = `https://spire-remuneration.web.app/?userid=${userState.selectedUser.userId}&volunteerId=${userState.selectedUser.volunteerId}`;
 
-		let query = volconQuery(userState.selectedUser.userId);
+		let nquery = volconQuery(userState.selectedUser.userId);
+
+		setQuery(nquery);
 		setLink({
 			volunteerLink: vLink,
 			remunLink: rLink,
 			msg: "Volunteers: click on the link above to copy!",
-			query: query,
 		});
-	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+	}, [userState]);
 
 	const handleAnim = () => {
 		setAnim(true);
@@ -185,11 +190,11 @@ export default function Finish() {
 								color="secondary"
 								variant="text"
 							>
-								{`${link.cons ? link.cons : "0"}`}
+								{`${volcont ? volcont : "0"}`}
 							</Button>
 							<Typography variant="body1" gutterBottom>
 								{`contributor${
-									link.cons === 1 ? "" : "s"
+									volcont === 1 ? "" : "s"
 								} so far!`}
 							</Typography>
 						</div>
