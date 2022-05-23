@@ -9,6 +9,7 @@ import BadMoodIcon from "@material-ui/icons/MoodBad";
 import PagesIcon from "@material-ui/icons/Pages";
 import OKMoodIcon from "@material-ui/icons/SentimentSatisfiedAltRounded";
 import React from "react";
+import QRCode from "react-qr-code";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 // Context
 import { Context as RecordContext } from "../../context/data/RecordContext";
@@ -69,7 +70,7 @@ export default function Finish() {
 		setLink({
 			volunteerLink: vLink,
 			remunLink: rLink,
-			msg: "Volunteers: click on the link above to copy!",
+			msg: "Hey volunteers! click on the link above to copy!",
 		});
 	}, [userState]);
 
@@ -219,6 +220,19 @@ export default function Finish() {
 						</Typography>
 					</>
 
+					<>
+						<div className={classes.volqrcode}>
+							<Typography
+								className={classes.linkMsg}
+								variant="body2"
+								gutterBottom
+							>
+								{`Or scan the QR code below`}
+							</Typography>
+							<QRCode value={link.volunteerLink} />
+						</div>
+					</>
+
 					<Button
 						className={classes.button}
 						fullWidth
@@ -363,6 +377,12 @@ const useStyles = makeStyles((theme) => ({
 		borderColor: green[700],
 		padding: theme.spacing(2),
 		margin: theme.spacing(2, 0, 0),
+	},
+	volqrcode: {
+		display: "flex",
+		flexDirection: "column",
+		justifyContent: "center",
+		margin: theme.spacing(0, 0, 2, 0),
 	},
 	value: {
 		fontSize: 42,
