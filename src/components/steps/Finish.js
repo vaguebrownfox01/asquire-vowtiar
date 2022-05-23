@@ -59,7 +59,9 @@ export default function Finish() {
 		setDone(d);
 
 		let vLink = `https://asquire.web.app/?volunteerId=${userState.selectedUser.userId}`;
-		let rLink = `https://spire-remuneration.web.app/?userid=${userState.selectedUser.userId}&volunteerId=${userState.selectedUser.volunteerId}`;
+		let rLink = d
+			? `https://spire-remuneration.web.app/?userid=${userState.selectedUser.userId}&volunteerId=${userState.selectedUser.volunteerId}`
+			: null;
 
 		let nquery = volconQuery(userState.selectedUser.userId);
 
