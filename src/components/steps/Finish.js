@@ -140,21 +140,22 @@ export default function Finish() {
 						<br />
 					</Typography>
 
-					{done ? (
-						<>
-							<Button
-								className={classes.button}
-								fullWidth
-								variant="contained"
-								size="large"
-								color="secondary"
-								href={link.remunLink}
-								target="_blank"
-							>
-								Register for compensation
-							</Button>
-						</>
-					) : (
+					<>
+						<Button
+							className={classes.button}
+							fullWidth
+							variant="contained"
+							size="large"
+							color="secondary"
+							href={done ? link.remunLink : null}
+							target="_blank"
+							disabled={!done}
+						>
+							Register for compensation
+						</Button>
+					</>
+
+					{!done && (
 						<>
 							<Typography
 								className={classes.note2}
