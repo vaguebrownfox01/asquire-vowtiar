@@ -86,27 +86,26 @@ const expConRemunDeets = async () => {
 	});
 };
 
+let all_cons = [];
+
 const expConSurvey = async (collection) => {
 	const surveyRef = db.collection(collection);
 	const d = await surveyRef.get();
 
 	const cons = [];
-	d.forEach(async (doc) => {
+	d.forEach((doc) => {
 		cons.push(doc.data());
 	});
 	let data = JSON.stringify(cons);
 
 	fs.writeFileSync(
-		`/home/jeevan/Documents/developer/asquire-vowtiar/src/functions/exports/${collection}.json`,
+		`/home/jeevan/Documents/developer/webapps/asquire-vowtiar/src/functions/exports/latest/${collection}.json`,
 		data
 	);
-	// console.log(data);
 
-	// console.log("[");
-	// d.forEach(async (doc) => {
-	// 	console.log(JSON.stringify(doc.data()), ",");
-	// });
-	// console.log("]");
+	all_cons = [...all_cons, ...cons];
+
+	console.log(`done for ${collection}\n`);
 };
 
 const confiles = async (version, userId) => {
@@ -136,11 +135,33 @@ const confiles = async (version, userId) => {
 /* GET from server */
 // expConRemunDeets();
 
-expConSurvey("users_remun_yin");
-expConSurvey("users_remun_yang");
-expConSurvey("users_remun_koi");
-expConSurvey("remun-register-yin-1");
-expConSurvey("remun-register-koi-1");
+const main = async () => {
+	// User Meta data collection
+	await expConSurvey("users");
+	await expConSurvey("users_final");
+	await expConSurvey("users_remun");
+	await expConSurvey("users_remun_dsp");
+	await expConSurvey("users_remun_fin");
+	await expConSurvey("users_remun_lap");
+	await expConSurvey("users_remun_yin");
+	await expConSurvey("users_remun_yang");
+	await expConSurvey("users_remun_koi");
+
+	// Remuneration
+	// await expConSurvey("remun-register-yin-1");
+	// await expConSurvey("remun-register-koi-1");
+
+	// write all cons
+	fs.writeFileSync(
+		`/home/jeevan/Documents/developer/webapps/asquire-vowtiar/src/functions/exports/latest/${`all_cons`}.json`,
+
+		JSON.stringify(all_cons)
+	);
+
+	console.log("done");
+};
+
+main();
 
 /* Contributors files */
 // confiles("yang", "anqa-18ddc889").catch((e) => console.log(e));
