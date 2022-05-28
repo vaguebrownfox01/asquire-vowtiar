@@ -86,8 +86,6 @@ const expConRemunDeets = async () => {
 	});
 };
 
-let all_cons = [];
-
 const expConSurvey = async (collection) => {
 	const surveyRef = db.collection(collection);
 	const d = await surveyRef.get();
@@ -103,9 +101,9 @@ const expConSurvey = async (collection) => {
 		data
 	);
 
-	all_cons = [...all_cons, ...cons];
-
 	console.log(`done for ${collection}\n`);
+
+	return cons;
 };
 
 const confiles = async (version, userId) => {
@@ -137,16 +135,29 @@ const confiles = async (version, userId) => {
 
 const main = async () => {
 	// User Meta data collection
-	await expConSurvey("users");
-	await expConSurvey("users_final");
-	await expConSurvey("users_remun");
-	await expConSurvey("users_remun_dsp");
-	await expConSurvey("users_remun_fin");
-	await expConSurvey("users_remun_lap");
-	await expConSurvey("users_remun_yin");
-	await expConSurvey("users_remun_yang");
-	await expConSurvey("users_remun_koi");
 
+	let all_cons = [];
+	const meta_docs = [
+		// user docs
+		"users",
+		"users_final",
+		"users_remun",
+		"users_remun_dsp",
+		"users_remun_fin",
+		"users_remun_lap",
+		"users_remun_yin",
+		"users_remun_yang",
+		"users_remun_koi",
+
+		// //remun docs
+		// "remun-register-yin-1",
+		// "remun-register-koi-1",
+	];
+
+	for (let doc in meta_docs) {
+		const c = await expConSurvey(meta_docs[doc]);
+		all_cons = [...all_cons, ...c];
+	}
 	// Remuneration
 	// await expConSurvey("remun-register-yin-1");
 	// await expConSurvey("remun-register-koi-1");
@@ -154,7 +165,6 @@ const main = async () => {
 	// write all cons
 	fs.writeFileSync(
 		`/home/jeevan/Documents/developer/webapps/asquire-vowtiar/src/functions/exports/latest/${`all_cons`}.json`,
-
 		JSON.stringify(all_cons)
 	);
 
