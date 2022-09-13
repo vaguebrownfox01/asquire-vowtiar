@@ -55,10 +55,12 @@ const theme = createMuiTheme({
 			},
 		},
 		MuiStepContent: {
-			last: {
-				margin: 0,
-				marginTop: 16,
-				padding: 8,
+			root: {
+				last: {
+					margin: 0,
+					marginTop: 16,
+					padding: 8,
+				},
 			},
 		},
 	},

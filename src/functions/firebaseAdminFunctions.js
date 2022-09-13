@@ -139,19 +139,19 @@ const main = async () => {
 	let all_cons = [];
 	const meta_docs = [
 		// user docs
-		"users",
-		"users_final",
-		"users_remun",
-		"users_remun_dsp",
-		"users_remun_fin",
-		"users_remun_lap",
-		"users_remun_yin",
-		"users_remun_yang",
+		// "users",
+		// "users_final",
+		// "users_remun",
+		// "users_remun_dsp",
+		// "users_remun_fin",
+		// "users_remun_lap",
+		// "users_remun_yin",
+		// "users_remun_yang",
 		"users_remun_koi",
 
 		// //remun docs
-		// "remun-register-yin-1",
-		// "remun-register-koi-1",
+		"remun-register-yin-1",
+		"remun-register-koi-1",
 	];
 
 	for (let doc in meta_docs) {
@@ -163,10 +163,10 @@ const main = async () => {
 	// await expConSurvey("remun-register-koi-1");
 
 	// write all cons
-	fs.writeFileSync(
-		`/home/jeevan/Documents/developer/webapps/asquire-vowtiar/src/functions/exports/latest/${`all_cons`}.json`,
-		JSON.stringify(all_cons)
-	);
+	// fs.writeFileSync(
+	// 	`/home/jeevan/Documents/developer/webapps/asquire-vowtiar/src/functions/exports/latest/${`all_cons`}.json`,
+	// 	JSON.stringify(all_cons)
+	// );
 
 	console.log("done");
 };

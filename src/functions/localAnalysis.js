@@ -1,8 +1,8 @@
-let yin = require("./exports/users_remun_yin.json");
-let yang = require("./exports/users_remun_yang.json");
-let koi = require("./exports/users_remun_koi.json");
-let koi_remun = require("./exports/remun-register-koi-1.json");
-let yin_remun = require("./exports/remun-register-yin-1.json");
+let yin = require("./exports/latest/users_remun_yin.json");
+let yang = require("./exports/latest/users_remun_yang.json");
+let koi = require("./exports/latest/users_remun_koi.json");
+let koi_remun = require("./exports/latest/remun-register-koi-1.json");
+let yin_remun = require("./exports/latest/remun-register-yin-1.json");
 
 const fs = require("fs");
 
@@ -53,12 +53,20 @@ const getVolCon = (d, filename) => {
 		return p;
 	}, {});
 
-	data = JSON.stringify(data);
+	let data_arr = Object.keys(data).map((v) => {
+		return {
+			volunteerId: v,
+			contributorIds: data[v],
+			count: data[v].length,
+		};
+	});
+
+	data_arr = JSON.stringify(data_arr);
 
 	fs.writeFileSync(
-		`/home/jeevan/Documents/developer/asquire-vowtiar/src/functions/exports/${filename}.json`,
-		data
+		`/home/jeevan/Documents/developer/webapps/asquire-vowtiar/src/functions/exports/${filename}.json`,
+		data_arr
 	);
 };
 
-getVolCon(data, "volconcol");
+getVolCon(data, "volconcol3");
