@@ -2,7 +2,7 @@
 
 Asquire is a data collection application designed to collect voice data related to sustained phonations, breath sounds, and cough sounds. The objective of this project is to analyze the sound characteristics of the collected voice data (recorded with smartphones) using data-driven and signal processing methods. The ultimate goal is to leverage machine learning (ML) techniques for the diagnosis and monitoring of asthmatic patients.
 
-![asquire-logo](/public/image/asq-logo.png)
+![asquire-logo](public/image/asq-logo.png)
 
 ## Motivation and Background
 
