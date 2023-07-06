@@ -2,7 +2,7 @@
 
 Asquire is a data collection application designed to collect voice data related to sustained phonations, breath sounds, and cough sounds. The objective of this project is to analyze the sound characteristics of the collected voice data (recorded with smartphones) using data-driven and signal processing methods. The ultimate goal is to leverage machine learning (ML) techniques for the diagnosis and monitoring of asthmatic patients.
 
-![asquire-logo](public/image/asq-logo.png)
+<img name="asquire_logo" src="public/image/asq-logo.png" width="128" >
 
 ## Motivation and Background
 
@@ -20,6 +20,7 @@ The performance of the machine learning tool developed in this project is direct
 
 By providing your voice samples, you are helping to enhance the diagnostic capabilities of the system and contribute to the overall improvement of asthma diagnosis and monitoring. Your participation is invaluable in advancing the field of machine learning-based medical diagnostics.
 
+
 ## How to Contribute?
 To contribute to the Asquire project, please follow these steps:
 
@@ -29,6 +30,15 @@ To contribute to the Asquire project, please follow these steps:
 4. Proceed to the recording section and carefully follow the instructions to record your voice.
 5. Once you have completed the recording, submit your data.
 6. Our team will verify the submitted data, and for successful contributions, you will be compensated accordingly.
+7. Bonus! There is a fun voice changing interface you can play with!
+
+<div>
+<img src="media/asquire_app-screen.png" width="538">
+<div>
+<img src="media/asquire_app-screen2.png" width="256">
+<img src="media/aasquire_app-screen3.png" width="276">
+
+
 
 ## Feedback and Support
 If you encounter any issues, have suggestions for improvement, or need assistance, please feel free to reach out to our support team. You can contact us through <spire.vrx@gmail.com>, and we will be happy to assist you.
