@@ -32,6 +32,8 @@ To contribute to the Asquire project, please follow these steps:
 6. Our team will verify the submitted data, and for successful contributions, you will be compensated accordingly.
 7. Bonus! There is a fun voice changing interface you can play with!
 
+### Screenshots
+
 <div>
 <img src="media/asquire_app-screen.png" width="538">
 <div>
