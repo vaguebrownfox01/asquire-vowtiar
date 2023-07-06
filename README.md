@@ -25,7 +25,8 @@ By providing your voice samples, you are helping to enhance the diagnostic capab
 To contribute to the Asquire project, please follow these steps:
 
 1. Visit the Asquire web-app <https://asquire.web.app>
-2. Create a new user ID to get started.
+2. Read the consent form carefully
+3. Create a new user ID to get started.
 3. Fill in your details and respond to the survey provided.
 4. Proceed to the recording section and carefully follow the instructions to record your voice.
 5. Once you have completed the recording, submit your data.
